@@ -1,119 +1,166 @@
-// ================================================
-// Footer.jsx
-// ================================================
-import { brandInfo } from "../data/data";
+import { toast } from "react-hot-toast";
+
+import Logo from "../assets/logo.png";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const navLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "Why Us", href: "#why-us" },
-    { label: "Menu", href: "#menu" },
-    { label: "Reviews", href: "#reviews" },
-    { label: "Contact", href: "#contact" },
-  ];
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    toast.success("Subscribed successfully!");
+    e.target.reset();
+  };
 
   return (
-    <footer className="bg-[#0A0A0A] border-t border-white/5 pt-14 pb-8 px-4 sm:px-6">
+    <footer className="py-16 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl">👑</span>
-              <span
-                className="text-[#E6A119] font-extrabold text-lg"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                Ik Royal Digestion
-              </span>
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12  group-hover:scale-110 transition-transform">
+                <img src={Logo} alt="GbogboAyé Logo" />
+              </div>
+              <div className="hidden sm:block">
+                <h1 className="font-display text-xl font-semibold text-ivory tracking-wide">
+                  GbogboAyé
+                </h1>
+                <p className="text-xs text-emerald-light font-body tracking-widest uppercase">
+                  Exclusive Rooms
+                </p>
+              </div>
             </div>
-            <p className="text-white/35 text-sm leading-relaxed">
-              {brandInfo.footerDescription}
+            <p className="text-ivory/60 text-sm leading-relaxed">
+              Redefining serenity and premium hospitality within Ilesa, Osun
+              State. Experience luxury beyond expectations.
             </p>
-            <div className="flex gap-3 mt-5">
-              <a
-                href={brandInfo.contact.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#1A1A1A] border border-white/10 hover:border-[#E6A119]/50 flex items-center justify-center text-lg transition-all duration-300 hover:scale-110"
-                aria-label="WhatsApp"
-              >
-                📲
-              </a>
-              <a
-                href={brandInfo.contact.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#1A1A1A] border border-white/10 hover:border-[#E6A119]/50 flex items-center justify-center text-lg transition-all duration-300 hover:scale-110"
-                aria-label="Instagram"
-              >
-                📷
-              </a>
-            </div>
           </div>
-
-          {/* Navigation */}
           <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">
-              Navigation
-            </h4>
-            <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-white/40 hover:text-[#E6A119] text-sm transition-colors duration-300"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">
-              Contact
-            </h4>
-            <ul className="space-y-3 text-sm">
+            <h4 className="font-display font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
               <li>
                 <a
-                  href={`tel:${brandInfo.contact.phone.replace(/\s/g, "")}`}
-                  className="text-white/40 hover:text-[#E6A119] transition-colors duration-300"
+                  href="#about"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
                 >
-                  📞 {brandInfo.contact.phone}
+                  About Us
                 </a>
               </li>
               <li>
                 <a
-                  href={`mailto:${brandInfo.contact.email}`}
-                  className="text-white/40 hover:text-[#E6A119] transition-colors duration-300"
+                  href="#services"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
                 >
-                  ✉️ {brandInfo.contact.email}
+                  Services
                 </a>
               </li>
-              <li className="text-white/40">
-                🕐 {brandInfo.contact.workingDays}
+              <li>
+                <a
+                  href="#rooms"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
+                >
+                  Suites
+                </a>
               </li>
-              <li className="text-white/40 leading-relaxed">
-                📍 {brandInfo.contact.address}
+              <li>
+                <a
+                  href="#gallery"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
+                >
+                  Gallery
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
+                >
+                  Contact
+                </a>
               </li>
             </ul>
+          </div>
+          <div>
+            <h4 className="font-display font-semibold mb-4">Services</h4>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="#services"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
+                >
+                  Premium Lodging
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
+                >
+                  Gourmet Restaurant
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
+                >
+                  Bar & Lounge
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
+                >
+                  Swimming Pool
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  className="text-ivory/60 hover:text-gold text-sm transition-colors"
+                >
+                  Event Hosting
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-display font-semibold mb-4">Newsletter</h4>
+            <p className="text-ivory/60 text-sm mb-4">
+              Subscribe for exclusive offers and updates.
+            </p>
+            <form className="flex gap-2" onSubmit={handleSubscribe}>
+              <input
+                type="email"
+                placeholder="Your email"
+                required
+                className="flex-1 luxury-input px-4 py-2 text-sm"
+              />
+              <button
+                type="submit"
+                className="btn-primary px-4 py-2 rounded-xl text-sm font-bold text-white"
+              >
+                <i className="fas fa-paper-plane"></i>
+              </button>
+            </form>
           </div>
         </div>
-
-        {/* Divider */}
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/20 text-xs">
-            © {currentYear} Ik Royal Digestion. All rights reserved.
+        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-ivory/40 text-sm">
+            &copy; 2026 GbogboAyé Exclusive Rooms. All rights reserved.
           </p>
-          <p className="text-white/15 text-xs">
-            Crafted with ❤️ in Ibadan, Nigeria
-          </p>
+          <div className="flex gap-6">
+            <a
+              href="#"
+              className="text-ivory/40 hover:text-gold text-sm transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="#"
+              className="text-ivory/40 hover:text-gold text-sm transition-colors"
+            >
+              Terms of Service
+            </a>
+          </div>
         </div>
       </div>
     </footer>

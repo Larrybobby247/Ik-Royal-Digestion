@@ -1,5 +1,5 @@
 {
-  "name": "ik-royal-digestion",
+  "name": "gbogboaye-exlusive-rooms",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -15,9 +15,13 @@
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.3.0",
+    "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/vite": "^4.2.2",
+    "lucide-react": "^1.21.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-hot-toast": "^2.6.0",
+    "react-router-dom": "^7.18.0",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {

@@ -1,129 +1,133 @@
-// ================================================
-// Hero.jsx
-// ================================================
-import { brandInfo } from "../data/data";
+import { useParticles } from '../hooks/useParticles'
+
+import Img1 from '../assets/img1.jpg'
+import Img2 from '../assets/img2.jpg'
+import Img3 from '../assets/img3.jpg'
+import Img4 from '../assets/img4.jpg'
 
 const Hero = () => {
+  const canvasRef = useParticles()
+
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1A1A1A]"
-    >
-      {/* Animated radial gold glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-20 animate-pulse"
-          style={{
-            background:
-              "radial-gradient(circle, #E6A119 0%, #FFD700 20%, transparent 70%)",
-          }}
-        />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-midnight via-midnight/90 to-midnight"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.08),_transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(18,107,64,0.1),_transparent_50%)]"></div>
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'linear-gradient(rgba(212,175,55,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.5) 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }}></div>
       </div>
 
-      {/* Decorative grid lines */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            "linear-gradient(#E6A119 1px, transparent 1px), linear-gradient(90deg, #E6A119 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none z-10"></canvas>
 
-      {/* Floating crown ornaments */}
-      <span className="absolute top-24 left-10 text-5xl opacity-10 animate-bounce" style={{ animationDuration: "3s" }}>
-        👑
-      </span>
-      <span className="absolute bottom-32 right-10 text-4xl opacity-10 animate-bounce" style={{ animationDuration: "4s", animationDelay: "1s" }}>
-        ✨
-      </span>
-      <span className="absolute top-40 right-20 text-3xl opacity-10 animate-bounce" style={{ animationDuration: "5s", animationDelay: "0.5s" }}>
-        🍽️
-      </span>
+      {/* Floating Decorative Elements */}
+      <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-gold/5 animate-float-slow hidden lg:block"></div>
+      <div className="absolute top-40 right-20 w-32 h-32 rounded-full bg-emerald/5 animate-float hidden lg:block"></div>
+      <div className="absolute bottom-40 left-1/4 w-16 h-16 rounded-full bg-gold/10 animate-float-reverse hidden lg:block"></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-[#E6A119]/15 border border-[#E6A119]/30 rounded-full px-4 py-1.5 mb-8 animate-fade-in">
-          <span className="text-[#FFD700] text-xs font-bold tracking-widest uppercase">
-            👑 Ibadan's Finest
-          </span>
-        </div>
-
-        {/* Headline */}
-        <h1
-          className="text-white font-extrabold leading-tight mb-6"
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(2.4rem, 7vw, 5rem)",
-          }}
-        >
-          Experience Food{" "}
-          <span
-            className="text-transparent bg-clip-text"
-            style={{
-              backgroundImage: "linear-gradient(135deg, #E6A119, #FFD700, #E6A119)",
-            }}
-          >
-            Fit for Royalty
-          </span>
-        </h1>
-
-        {/* Description */}
-        <p
-          className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10"
-          style={{ fontFamily: "'Lora', serif" }}
-        >
-          {brandInfo.heroDescription}
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href={brandInfo.contact.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-3 bg-[#E6A119] hover:bg-[#FFD700] text-[#1A1A1A] font-bold text-base px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-2xl shadow-amber-500/30 overflow-hidden"
-          >
-            <span className="relative z-10">Order on WhatsApp</span>
-            <span className="relative z-10 text-xl">📲</span>
-            <span className="absolute inset-0 bg-[#FFD700] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 rounded-full" />
-          </a>
-
-          <a
-            href="#menu"
-            className="inline-flex items-center gap-2 border border-[#E6A119]/50 hover:border-[#E6A119] text-[#E6A119] hover:text-[#FFD700] font-semibold text-base px-8 py-4 rounded-full transition-all duration-300 hover:bg-[#E6A119]/10"
-          >
-            View Menu
-            <span>↓</span>
-          </a>
-        </div>
-
-        {/* Stats Bar */}
-        <div className="mt-16 grid grid-cols-3 gap-6 border-t border-white/10 pt-10">
-          {[
-            { value: "500+", label: "Happy Customers" },
-            { value: "20+", label: "Signature Dishes" },
-            { value: "100%", label: "Homemade Quality" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p
-                className="text-2xl md:text-4xl font-extrabold text-[#E6A119]"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                {stat.value}
-              </p>
-              <p className="text-white/50 text-xs md:text-sm tracking-wider uppercase mt-1">
-                {stat.label}
-              </p>
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-12">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="text-center lg:text-left space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-gold text-gold text-xs font-semibold tracking-widest uppercase reveal">
+              <i className="fas fa-crown text-gold"></i>Premium Hospitality in Ilesa
             </div>
-          ))}
+
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight reveal" style={{ transitionDelay: '0.1s' }}>
+              Discover <span className="text-gradient-gold">Serene</span> &<br />Cozy <span className="text-gradient-gold">Luxury</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-ivory/70 font-body leading-relaxed max-w-xl mx-auto lg:mx-0 reveal" style={{ transitionDelay: '0.2s' }}>
+              Experience premium hospitality where absolute comfort meets local charm. Enjoy our refreshing outdoor pool, elite restaurant, and fully secure, smoke-free suites in the heart of Ilesa.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style={{ transitionDelay: '0.3s' }}>
+              <a href="#rooms" className="btn-primary px-8 py-4 rounded-full text-sm font-bold text-white shadow-xl flex items-center justify-center gap-2">
+                <i className="fas fa-calendar-check"></i>Reserve a Room
+              </a>
+              <a href="#gallery" className="btn-outline px-8 py-4 rounded-full text-sm font-bold text-gold flex items-center justify-center gap-2">
+                <i className="fas fa-images"></i>Explore Gallery
+              </a>
+            </div>
+
+            <div className="flex items-center justify-center lg:justify-start gap-8 pt-4 reveal" style={{ transitionDelay: '0.4s' }}>
+              <div className="text-center">
+                <div className="text-2xl font-display font-bold text-gold">4.9</div>
+                <div className="text-xs text-ivory/50">Guest Rating</div>
+              </div>
+              <div className="w-px h-10 bg-white/10"></div>
+              <div className="text-center">
+                <div className="text-2xl font-display font-bold text-gold">24/7</div>
+                <div className="text-xs text-ivory/50">Service</div>
+              </div>
+              <div className="w-px h-10 bg-white/10"></div>
+              <div className="text-center">
+                <div className="text-2xl font-display font-bold text-gold">5★</div>
+                <div className="text-xs text-ivory/50">Experience</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Content - 3D Scene */}
+          <div className="relative perspective-container hidden lg:block">
+            <div className="relative w-full aspect-square max-w-lg mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-emerald/10 rounded-3xl blur-3xl transform scale-90"></div>
+
+              <div className="absolute -top-8 -right-8 w-48 h-64 rounded-2xl glass overflow-hidden animate-float shadow-2xl z-20">
+                <img src={Img1} alt="Luxury Hotel" className="w-full h-full object-cover opacity-80" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 glass-dark">
+                  <p className="text-xs text-gold font-semibold">Premium Suite</p>
+                  <p className="text-sm font-display">Royal Experience</p>
+                </div>
+              </div>
+
+              <div className="absolute top-1/4 -left-12 w-40 h-52 rounded-2xl glass overflow-hidden animate-float-reverse shadow-2xl z-10">
+                <img src={Img2} alt="Pool" className="w-full h-full object-cover opacity-80" />
+                <div className="absolute bottom-0 left-0 right-0 p-3 glass-dark">
+                  <p className="text-xs text-gold font-semibold">Outdoor Pool</p>
+                </div>
+              </div>
+
+              <div className="absolute -bottom-4 right-12 w-44 h-56 rounded-2xl glass overflow-hidden animate-float-slow shadow-2xl z-30">
+                <img src={Img3} alt="Restaurant" className="w-full h-full object-cover opacity-80" />
+                <div className="absolute bottom-0 left-0 right-0 p-3 glass-dark">
+                  <p className="text-xs text-gold font-semibold">Fine Dining</p>
+                </div>
+              </div>
+
+              <div className="absolute inset-8 rounded-3xl overflow-hidden shadow-2xl border border-gold/20">
+                <img src={Img4} alt="GbogboAyé Exclusive Rooms" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="flex text-gold text-xs">
+                      <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
+                    </div>
+                    <span className="text-xs text-ivory/70">5.0 Rating</span>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-ivory">GbogboAyé</h3>
+                  <p className="text-sm text-ivory/60">Ilesa, Osun State</p>
+                </div>
+              </div>
+
+              <div className="absolute -inset-4 border border-gold/10 rounded-full animate-pulse-gold"></div>
+              <div className="absolute -inset-8 border border-gold/5 rounded-full"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#111111] to-transparent pointer-events-none" />
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+        <div className="w-6 h-10 rounded-full border-2 border-gold/30 flex justify-center pt-2">
+          <div className="w-1.5 h-3 bg-gold rounded-full animate-pulse"></div>
+        </div>
+      </div>
     </section>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

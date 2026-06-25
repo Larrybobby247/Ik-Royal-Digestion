@@ -1,109 +1,71 @@
-// ================================================
-// Testimonials.jsx
-// ================================================
-import { testimonials } from "../data/data";
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
-const StarRating = ({ rating }) => (
-  <div className="flex gap-0.5">
-    {[1, 2, 3, 4, 5].map((star) => (
-      <span
-        key={star}
-        className={`text-base ${star <= rating ? "text-[#E6A119]" : "text-white/15"}`}
-      >
-        ★
-      </span>
-    ))}
-  </div>
-);
-
-const avatarColors = ["#E6A119", "#FFD700", "#C0392B", "#2980B9"];
+const testimonialsList = [
+  {
+    name: 'Oluwaseun A.',
+    role: 'Leisure Traveler',
+    initials: 'OA',
+    text: 'GbogboAyé is a hidden gem in Ilesa. The environment is extremely quiet, serene, and perfect for getting away from city noise.',
+  },
+  {
+    name: 'Chief Adebayo',
+    role: 'Return Guest',
+    initials: 'CA',
+    text: 'The outdoor swimming pool and clean water standards impressed me. Highly secure gate monitoring gives me absolute peace of mind.',
+  },
+  {
+    name: 'Blessing N.',
+    role: 'Weekend Staycationer',
+    initials: 'BN',
+    text: 'Clean bedsheets, cold air conditioning, and delicious point-and-kill fish at the bar. Will definitely book again!',
+  },
+  {
+    name: 'Engr. Taiwo',
+    role: 'Business Consultant',
+    initials: 'ET',
+    text: 'Perfect location directly opposite the Health Center. The room service staff are professional and the Wi-Fi speed was steady for my remote work.',
+  },
+]
 
 const Testimonials = () => {
+  useScrollReveal()
+
   return (
-    <section id="reviews" className="bg-[#1A1A1A] py-24 px-4 sm:px-6 relative overflow-hidden">
-      {/* Background decoration */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full opacity-5 pointer-events-none"
-        style={{ background: "radial-gradient(circle, #FFD700, transparent 70%)" }}
-      />
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <span className="inline-block text-[#E6A119] text-xs font-bold tracking-widest uppercase mb-3">
-            ✦ Royal Reviews ✦
-          </span>
-          <h2
-            className="text-white text-4xl md:text-5xl font-extrabold"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            What Our{" "}
-            <span
-              className="text-transparent bg-clip-text"
-              style={{ backgroundImage: "linear-gradient(135deg, #E6A119, #FFD700)" }}
-            >
-              Royals
-            </span>{" "}
-            Say
-          </h2>
-          <div className="mt-4 mx-auto w-16 h-px bg-[#E6A119] opacity-60" />
+    <section id="testimonials" className="py-24 px-6 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gold/[0.02] via-transparent to-gold/[0.02]"></div>
+      <div className="max-w-7xl mx-auto relative">
+        <div className="text-center mb-16 reveal">
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">Testimonials</span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold mt-4">What Our <span className="text-gradient-gold">Guests</span> Say</h2>
         </div>
-
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {testimonials.map((t, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonialsList.map((t, index) => (
             <div
-              key={t.id}
-              className="group bg-[#111111] border border-white/5 hover:border-[#E6A119]/30 rounded-2xl p-6 flex flex-col justify-between gap-5 transition-all duration-500 hover:-translate-y-1"
+              key={t.name}
+              className="testimonial-card glass rounded-2xl p-6 relative reveal"
+              style={{ transitionDelay: `${index * 0.1}s` }}
             >
-              {/* Quote mark */}
-              <div>
-                <span
-                  className="text-5xl leading-none text-[#E6A119]/20 font-serif"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  "
-                </span>
-                <p className="text-white/65 text-sm leading-relaxed -mt-2">
-                  {t.comment}
-                </p>
+              <div className="flex text-gold text-xs mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <i key={i} className="fas fa-star"></i>
+                ))}
               </div>
-
-              {/* Footer */}
-              <div>
-                <StarRating rating={t.rating} />
-                <div className="flex items-center gap-3 mt-3">
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-[#1A1A1A] font-extrabold text-xs flex-shrink-0"
-                    style={{ background: avatarColors[index % avatarColors.length] }}
-                  >
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="text-white text-sm font-semibold">{t.name}</p>
-                    <p className="text-[#E6A119]/60 text-xs">{t.product}</p>
-                  </div>
+              <p className="text-ivory/70 text-sm leading-relaxed mb-6 italic">"{t.text}"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-midnight font-bold text-sm">
+                  {t.initials}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">{t.name}</p>
+                  <p className="text-xs text-ivory/50">{t.role}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Overall rating bar */}
-        <div className="mt-14 text-center">
-          <div className="inline-flex items-center gap-3 bg-[#111111] border border-[#E6A119]/20 rounded-full px-6 py-3">
-            <div className="flex gap-0.5">
-              {[1,2,3,4,5].map(s => (
-                <span key={s} className="text-[#E6A119] text-lg">★</span>
-              ))}
-            </div>
-            <span className="text-white font-bold text-lg">4.9</span>
-            <span className="text-white/40 text-sm">from 100+ reviews</span>
-          </div>
-        </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Testimonials;
+export default Testimonials
